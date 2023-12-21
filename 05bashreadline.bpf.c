@@ -42,6 +42,6 @@ int BPF_KRETPROBE(printret, const void *ret) {
  bpf_printk("PID %d (%s) read: %s ", pid, comm, str);   // 打印相关信息到内核日志
 
  return 0;
-};
+}
 
 char LICENSE[] SEC("license") = "GPL";

@@ -13,7 +13,7 @@ char LICENSE[] SEC("license") = "Dual BSD/GPL";
 // dfd（文件描述符）和name（文件名结构体指针）。
 SEC("kprobe/do_unlinkat")
 int BPF_KPROBE(do_unlinkat, int dfd, struct filename *name) {
-  pid_t pid;uretprobe
+  pid_t pid;
   const char *filename;
 
   pid = bpf_get_current_pid_tgid() >> 32;

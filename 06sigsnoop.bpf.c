@@ -37,6 +37,7 @@ static int probe_entry(pid_t tpid, int sig) {
   __u64 pid_tgid;
   __u32 tid;
 
+  // 使用 bpf_map 存储捕获的事件信息，包括发送信号的进程 ID、接收信号的进程 ID、信号值和进程的可执行文件名称。
   pid_tgid = bpf_get_current_pid_tgid();
   tid = (__u32)pid_tgid;
   event.pid = pid_tgid >> 32;     // 获取当前进程ID
@@ -53,6 +54,7 @@ static int probe_exit(void *ctx, int ret) {
   __u32 tid = (__u32)pid_tgid;
   struct event *eventp;
 
+  // 获取存储在 bpf_map 中的事件信息，并使用 bpf_printk 打印进程 ID、进程名称、发送的信号和系统调用的返回值。
   eventp = bpf_map_lookup_elem(&values, &tid);    // 在哈希映射中查找事件
   if (!eventp) return 0;
 

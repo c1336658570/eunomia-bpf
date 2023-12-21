@@ -8,6 +8,7 @@
 #include <bpf/bpf_core_read.h>
 #include "08exitsnoop.h"
 
+// 定义一个名为 "LICENSE" 的全局变量，内容为 "Dual BSD/GPL"，这是 eBPF 程序的许可证要求。
 char LICENSE[] SEC("license") = "Dual BSD/GPL";
 
 // 定义环形缓冲区映射，最大允许 256,000 个条目

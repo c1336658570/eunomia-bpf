@@ -16,6 +16,7 @@
 // 要跟踪的进程ID
 const volatile int pid_target = 0;
 
+// 接收一个类型为 struct trace_event_raw_sys_enter 的参数 ctx。这个结构体包含了关于系统调用的信息。
 SEC("tracepoint/syscalls/sys_enter_openat")
 int tracepoint__syscalls__sys_enter_openat(struct trace_event_raw_sys_enter* ctx) {
   u64 id = bpf_get_current_pid_tgid();
